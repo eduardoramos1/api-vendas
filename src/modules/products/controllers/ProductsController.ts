@@ -4,7 +4,6 @@ import DeleteProductService from '../services/DeleteProductService';
 import ListOneProductService from '../services/ListOneProductService';
 import ListProductService from '../services/ListProductService';
 import UpdateProductService from '../services/UpdateProductService';
-import Product from '../typeorm/entities/Product';
 
 export default class ProductsController {
   public async listProducts(req: Request, res: Response): Promise<Response> {
