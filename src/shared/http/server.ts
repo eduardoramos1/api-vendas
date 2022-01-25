@@ -2,6 +2,8 @@ import 'reflect-metadata';
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
+// executa erros caso algum seja identificado na validação dos dados das rotas
+import { errors } from 'celebrate';
 import routes from './routes';
 import AppError from '@shared/errors/AppError';
 import '@shared/typeorm';
@@ -9,8 +11,13 @@ import '@shared/typeorm';
 const app = express();
 
 app.use(cors());
+
 app.use(express.json());
+
 app.use(routes);
+
+app.use(errors())
+
 //  Middleware para tratamento de erro, ao acessar uma rota e caso essa rota gere algum erro, esse middleware irá gerar uma mensagem de erro
 app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   if (error instanceof AppError) {
@@ -30,3 +37,5 @@ app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
 app.listen(3333, () => {
   console.log('Servidor iniciado na porta 3333! ༼ つ ◕_◕ ༽つ');
 });
+
+
