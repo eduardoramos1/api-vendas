@@ -28,6 +28,9 @@ app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   }
 
   // se o erro não for um instancia de AppError, provavalmente é um erro fora da aplicação
+
+  console.log(error.stack);
+
   return res.status(500).json({
     status: 'error',
     message: 'Internal server error',
