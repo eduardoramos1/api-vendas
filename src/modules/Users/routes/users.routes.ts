@@ -2,7 +2,7 @@ import { Router } from 'express';
 // Celebreta serve para fazer validação dos dados que serão enviados nas rotas
 import { celebrate, Joi, Segments } from 'celebrate';
 import UsersController from '../controllers/UsersController';
-import isAuthenticated from '../middlewares/isAuthenticated';
+import isAuthenticated from '../../../shared/http/middlewares/isAuthenticated';
 
 const usersRouter = Router();
 const usersController = new UsersController();
