@@ -1,10 +1,9 @@
 import authConfig from '@config/auth';
 import AppError from '@shared/errors/AppError';
 import { NextFunction, Request, Response } from 'express';
-import { NumberSchema } from 'joi';
 import { verify } from 'jsonwebtoken';
 
-interface JwtToken {
+interface IJwtToken {
   iat: number;
   exp: number;
   sub: string;
@@ -29,7 +28,7 @@ export default function isAuthenticated(
     const decodedToken = verify(token, authConfig.jwt.secret);
 
     // para pegar o id do usuario que foi passado como subject na criação da sessão
-    const { sub } = decodedToken as JwtToken;
+    const { sub } = decodedToken as IJwtToken;
 
     req.user = {
       id: sub,
