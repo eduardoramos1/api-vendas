@@ -9,6 +9,6 @@ export default class ResetPasswordController {
 
     await resetPassword.execute({ token, password });
 
-    return res.status(204).json();
+    return res.status(200).json({ message: 'Senha alterada com sucesso' });
   }
 }
