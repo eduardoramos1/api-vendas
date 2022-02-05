@@ -51,7 +51,7 @@ export default class EtherealMail {
         address: to.email,
       },
       subject,
-      html: await mailTemplate.parse(templateData),
+      html: mailTemplate.parse(templateData),
     });
 
     console.log('Message sent: %s', message.messageId);

@@ -11,10 +11,7 @@ interface IParseMailTemplate {
 }
 
 export default class HandlebarsMailTemplate {
-  public async parse({
-    template,
-    variables,
-  }: IParseMailTemplate): Promise<string> {
+  public parse({ template, variables }: IParseMailTemplate): string {
     const parseTemplate = Handlebars.compile(template);
 
     return parseTemplate(variables);
