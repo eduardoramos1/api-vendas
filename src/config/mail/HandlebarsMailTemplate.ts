@@ -1,4 +1,5 @@
 import Handlebars from 'handlebars';
+import fs from 'fs';
 
 // Porque não sabemos exatamente quais serão as informações que estarão dentro de variables é possivel deixar dinamico dessa forma
 interface ITemplateVariables {
@@ -6,13 +7,16 @@ interface ITemplateVariables {
 }
 
 interface IParseMailTemplate {
-  template: string;
+  file: string;
   variables: ITemplateVariables;
 }
 
 export default class HandlebarsMailTemplate {
-  public parse({ template, variables }: IParseMailTemplate): string {
-    const parseTemplate = Handlebars.compile(template);
+  public async parse({ file, variables }: IParseMailTemplate): Promise<string> {
+    const templateFileContent = await fs.promises.readFile(file, {
+      encoding: 'utf-8',
+    });
+    const parseTemplate = Handlebars.compile(templateFileContent);
 
     return parseTemplate(variables);
   }

@@ -6,7 +6,7 @@ interface ITemplateVariables {
 }
 
 interface IParseMailTemplate {
-  template: string;
+  file: string;
   variables: ITemplateVariables;
 }
 
@@ -51,7 +51,7 @@ export default class EtherealMail {
         address: to.email,
       },
       subject,
-      html: mailTemplate.parse(templateData),
+      html: await mailTemplate.parse(templateData),
     });
 
     console.log('Message sent: %s', message.messageId);
