@@ -15,7 +15,7 @@ export default class UpdateCustomerService {
 
     const customer = await customerRepository.findById(id);
 
-    if (!customer) throw new AppError('Cliente não existe');
+    if (!customer) throw new AppError('Cliente não existe', 404);
 
     const emailExists = await customerRepository.findByEmail(email);
 
